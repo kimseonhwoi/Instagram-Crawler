@@ -8,18 +8,15 @@ import org.springframework.web.bind.annotation.RestController;
 import sh.love.service.MainService;
 
 @RestController
-@ResponseBody
 public class MainController {
 
     @Autowired
     private MainService mainService;
 
     @RequestMapping(value = "/")
-    public String main(Model model) throws Exception{
-        String postId = "post id";
-        String userId = "체킹할 User Id";
-        boolean re = mainService.instagram(postId, userId);
-        return "/main";
+    public String main(@RequestParam(value = "postId") String postId,
+                       @RequestParam(value = "userId") String userId) throws Exception{
+        return mainService.instagram(postId, userId);
     }
 
 }
